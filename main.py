@@ -2,14 +2,10 @@ from classes import tipoJogador, Propriedade
 import random
 import statistics
 
-#Contador para finalizar as simulacoes
-i = 0
-# Contadores
-contTimeOut = 0
 contTurnosPartida = []
 vencedorPartida = []
 
-while i<300:
+for k in range(300):
 
     #Definicao dos tipos de jogadores
     jogador1 = tipoJogador(300,0,0,0,True, "impulsivo")
@@ -21,41 +17,41 @@ while i<300:
     vl1 = random.randint(50, 110)
     prop1 = Propriedade(vl1, vl1 * 0.3, "", False)
     vl2 = random.randint(50, 110)
-    prop2 = Propriedade(vl2, vl2 * 0.1, "", False)
+    prop2 = Propriedade(vl2, vl2 * 0.4, "", False)
     vl3 = random.randint(50, 110)
     prop3 = Propriedade(vl3, vl3 * 0.1, "", False)
     vl4 = random.randint(50, 110)
-    prop4 = Propriedade(vl4, vl4 * 0.1, "", False)
+    prop4 = Propriedade(vl4, vl4 * 0.3, "", False)
     vl5 = random.randint(50, 110)
-    prop5 = Propriedade(vl5, vl5 * 0.1, "", False)
+    prop5 = Propriedade(vl5, vl5 * 0.4, "", False)
     vl6 = random.randint(50, 110)
     prop6 = Propriedade(vl6, vl6 * 0.1, "", False)
     vl7 = random.randint(50, 110)
-    prop7 = Propriedade(vl7, vl7 * 0.1, "", False)
+    prop7 = Propriedade(vl7, vl7 * 0.5, "", False)
     vl8 = random.randint(50, 110)
-    prop8 = Propriedade(vl8, vl8 * 0.1, "", False)
+    prop8 = Propriedade(vl8, vl8 * 0.6, "", False)
     vl9 = random.randint(50, 110)
-    prop9 = Propriedade(vl9, vl9 * 0.1, "", False)
+    prop9 = Propriedade(vl9, vl9 * 0.3, "", False)
     vl10 = random.randint(50, 110)
-    prop10 = Propriedade(vl10, vl10 * 0.1, "", False)
+    prop10 = Propriedade(vl10, vl10 * 0.2, "", False)
     vl11 = random.randint(50, 110)
-    prop11 = Propriedade(vl11, vl11 * 0.1, "", False)
+    prop11 = Propriedade(vl11, vl11 * 0.2, "", False)
     vl12 = random.randint(50, 110)
-    prop12 = Propriedade(vl12, vl12 * 0.1, "", False)
+    prop12 = Propriedade(vl12, vl12 * 0.2, "", False)
     vl13 = random.randint(50, 110)
-    prop13 = Propriedade(vl13, vl13 * 0.1, "", False)
+    prop13 = Propriedade(vl13, vl13 * 0.15, "", False)
     vl14 = random.randint(50, 110)
-    prop14 = Propriedade(vl14, vl14 * 0.1, "", False)
+    prop14 = Propriedade(vl14, vl14 * 0.19, "", False)
     vl15 = random.randint(50, 110)
-    prop15 = Propriedade(vl15, vl15 * 0.1, "", False)
+    prop15 = Propriedade(vl15, vl15 * 0.24, "", False)
     vl16 = random.randint(50, 110)
-    prop16 = Propriedade(vl16, vl16 * 0.1, "", False)
+    prop16 = Propriedade(vl16, vl16 * 0.39, "", False)
     vl17 = random.randint(50, 110)
-    prop17 = Propriedade(vl17, vl17 * 0.1, "", False)
+    prop17 = Propriedade(vl17, vl17 * 0.37, "", False)
     vl18 = random.randint(50, 110)
-    prop18 = Propriedade(vl18, vl18 * 0.1, "", False)
+    prop18 = Propriedade(vl18, vl18 * 0.4, "", False)
     vl19 = random.randint(50, 110)
-    prop19 = Propriedade(vl19, vl19 * 0.1, "", False)
+    prop19 = Propriedade(vl19, vl19 * 0.2, "", False)
     vl20 = random.randint(50, 110)
     prop20 = Propriedade(vl20, vl20 * 0.1, "", False)
 
@@ -68,11 +64,6 @@ while i<300:
     cont2 = 0
     cont3 = 0
     cont4 = 0
-
-    # Contadores
-    contRodadas = 0
-    contEliminados = 0
-    compValores = []
 
     # Definicao de ordem dos jogadores no inicio de cada rodada
     ordem = []
@@ -98,15 +89,30 @@ while i<300:
     vencedor = ""
     turno = 0
 
-    while contRodadas == 1000 or contEliminados == -3:
+    # Definicao da casa dos jogadores
+    casaJog4 = 0
+    casaJog3 = 0
+    casaJog2 = 0
+    casaJog1 = 0
+
+    # Contadores
+    contRodadas = 0
+    contEliminados = 0
+    compValores = []
+    contTimeOut = 0
+
+    while contRodadas < 1000:
+        contRodadas = contRodadas+1
+        print(contRodadas)
         for i in ordem:
             # Caso do jogador Impulsivo 1
-            if ordem==1 and jogador1.status == True:
+            if ordem==1 and jogador1.status==True:
                 dado = random.randint(1, 6)
                 casaJog1 = dado + casaJog1
+                print(casaJog1)
 
                 # Caso passe do numero de casas, retornar a casa devida no tabuleiro e adicionar 100 de saldo
-                if casaJog1 >= 20:
+                if casaJog1 > 20:
                     casaJog1 = (20 - casaJog1) * -1
                     jogador1.impulsivo = jogador1.impulsivo + 100
 
@@ -115,11 +121,8 @@ while i<300:
                     casasTabuleiro[casaJog1].comprar()
                     casasTabuleiro[casaJog1].proprietario = jogador1.nome
 
-                    print(casasTabuleiro[casaJog1].proprietario)
-
                 elif casasTabuleiro[casaJog1].comprada == True:
                     jogador1.impulsivo = jogador1.impulsivo - casasTabuleiro[casaJog1].aluguel
-
                     if casasTabuleiro[casaJog1].proprietario == jogador2.nome:
                         jogador2.exigente = jogador2.exigente + casasTabuleiro[casaJog1].aluguel
                     elif casasTabuleiro[casaJog1].proprietario == jogador3.nome:
@@ -138,12 +141,12 @@ while i<300:
                             casasTabuleiro[i].perder()
 
             # Caso do jogador Exigente 2
-            if ordem[i] == 2 and jogador2.status == True:
+            if ordem==2 and jogador2.status == True:
                 dado = random.randint(1, 6)
                 casaJog2 = dado + casaJog2
 
                 # Caso passe do numero de casas, retornar a casa devida no tabuleiro e adicionar 100 de saldo
-                if casaJog2 >= 20:
+                if casaJog2 > 20:
                     casaJog2 = (20 - casaJog2) * -1
                     jogador2.exigente = jogador2.exigente + 100
 
@@ -174,12 +177,12 @@ while i<300:
                             casasTabuleiro[i].perder()
 
             # Caso do jogador Cauteloso 3
-            if ordem[i] == 3 and jogador3.status == True:
+            if ordem==3 and jogador3.status == True:
                 dado = random.randint(1, 6)
                 casaJog3 = dado + casaJog3
 
                 # Caso passe do numero de casas, retornar a casa devida no tabuleiro e adicionar 100 de saldo
-                if casaJog3 >= 20:
+                if casaJog3 > 20:
                     casaJog3 = (20 - casaJog3) * -1
                     jogador3.cauteloso = jogador3.cauteloso + 100
 
@@ -210,12 +213,12 @@ while i<300:
                             casasTabuleiro[i].perder()
 
             # Caso do jogador Aleatorio
-            if ordem[i] == 4 and jogador4.status == True:
+            if ordem==4 and jogador4.status == True:
                 dado = random.randint(1, 6)
                 casaJog4 = dado + casaJog4
 
             # Caso passe do numero de casas, retornar a casa devida no tabuleiro e adicionar 100 de saldo
-                if casaJog4 >= 20:
+                if casaJog4 > 20:
                     casaJog4 = (20 - casaJog4) * -1
                     jogador4.aleatorio = jogador4.aleatorio + 100
 
@@ -235,15 +238,13 @@ while i<300:
                             jogador2.exigente = jogador2.exigente + casasTabuleiro[casaJog4].aluguel
                         else:
                             jogador3.cauteloso = jogador3.cauteloso + casasTabuleiro[casaJog4].aluguel
-
         turno = turno + 1
-        contRodadas = contRodadas + 1
-
+        '''
         compValores_lista = [(jogador1.impulsivo, jogador1.nome),(jogador2.exigente, jogador2.nome), (jogador3.cauteloso, jogador3.nome),(jogador4.aleatorio, jogador4.nome)]
         compValores = dict(compValores_lista)
-
+        '''
         if contRodadas == 1000:
-            '''
+            '''  
             compValoresOrdenados = sorted(compValores)
             if compValoresOrdenados[0] > compValoresOrdenados[1]:
                 vencedor = compValoresOrdenados[0]
@@ -256,7 +257,7 @@ while i<300:
             '''
             contTimeOut = contTimeOut + 1
 
-        elif jogador1.status == False and jogador2.status == False and jogador3.status == False:
+        if jogador1.status == False and jogador2.status == False and jogador3.status == False:
             vencedor = jogador4.nome
         elif jogador1.status == False and jogador2.status == False and jogador4.status == False:
             vencedor = jogador3.nome
@@ -265,9 +266,8 @@ while i<300:
         elif jogador4.status == False and jogador1.status == False and jogador3.status == False:
             vencedor = jogador4.nome
 
-    vencedorPartida.append(vencedor)
-    contTurnosPartida.append(turno)
-    i = i +1
+        vencedorPartida.append(vencedor)
+        contTurnosPartida.append(turno)
 
 ## SAIDAS ##
 print("O numero de partidas que terminaram por timeOut foram: " + str(contTimeOut))
